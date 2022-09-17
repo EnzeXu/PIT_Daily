@@ -1,4 +1,4 @@
-notice_hours = [23
+notice_hours = [00
                 # 6,
                 # 12,
                 # 18
