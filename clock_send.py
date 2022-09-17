@@ -9,7 +9,7 @@ def clock_send():
     print(now_time_string(), "[ ok ] Starting ...")
     for hour in notice_hours:
         for minute in notice_minutes:
-            schedule.every().day.at("%02d:%02d" % (hour, minute)).do(daily_job, 1)
+            schedule.every().day.at("%02d:%02d" % (hour, minute)).do(daily_job)
     print(now_time_string(), "[ ok ] Triggers at {0} : {1} every day".format(
         str(["%02d" % item for item in notice_hours]).replace("'", ""),
         str(["%02d" % item for item in notice_minutes]).replace("'", "")))
