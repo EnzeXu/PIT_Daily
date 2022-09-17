@@ -44,7 +44,7 @@ class Mail:
             return False
         message = MIMEMultipart()
         message["From"] = formataddr(
-            (Header("Enze Xu", "utf-8").encode(), self.sender))  # self.format_address([self.sender])
+            (Header("Enze Xu (Auto)", "utf-8").encode(), self.sender))  # self.format_address([self.sender])
         message["To"] = self.format_address(self.to_receivers)  # ",".join(self.to_receivers)
         message["Cc"] = self.format_address(self.cc_receivers)  # ",".join(self.cc_receivers)
         message["Bcc"] = self.format_address(self.bcc_receivers)  # ",".join(self.bcc_receivers)
