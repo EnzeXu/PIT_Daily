@@ -1,16 +1,16 @@
 import requests
 import re
 import time
-from bs4 import BeautifulSoup
 import json
-from tqdm import tqdm
 import os
 import pickle
 import pandas as pd
+from bs4 import BeautifulSoup
+from tqdm import tqdm
+
 from baidu_api import baidu_translate
 from mail import Mail
 from strings import *
-
 from const import *
 
 
