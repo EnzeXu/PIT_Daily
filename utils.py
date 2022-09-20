@@ -207,7 +207,7 @@ def daily_job():
     df_today_dinner.index += 1
 
     mail = Mail()
-    to_receivers = ["xue20@wfu.edu", "zhanj318@wfu.edu"]  # ["zhanj318@wfu.edu"]
+    to_receivers = ["xue20@wfu.edu"]#, "zhanj318@wfu.edu"]  # ["zhanj318@wfu.edu"]
     mail.set_receivers(to_receivers, [], [])
     content_html = STRING_MAIL_TEXT_HEAD + STRING_MAIL_TEXT_TITLE.format(today_date)
     content_html += STRING_MAIL_TEXT_PART_NONE_BLUE.format(
@@ -231,8 +231,7 @@ def daily_job():
     content_html += STRING_MAIL_TEXT_TAIL
     # print(content_html)
     mail.send(content_html, [], "PIT Daily [{}] - Today [{}]".format(today_date, df_match[0]), "html")
-
-
+    print(now_time_string(), "[ ok ] Finished")
 
 
 if __name__ == "__main__":
