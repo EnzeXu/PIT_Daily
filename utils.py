@@ -63,7 +63,7 @@ def get_menu(date, save_flag=True):
     # assert len(periods) == 4
     word_count = 0
     word_count_need = 0
-    for i in tqdm(range(len(periods))):
+    for i in range(len(periods)):
         period_dic = dict()
         # print()
         # print(tabs[i])
