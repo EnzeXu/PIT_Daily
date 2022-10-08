@@ -4,6 +4,7 @@ import time
 import json
 import os
 import pickle
+import datetime
 import pandas as pd
 from bs4 import BeautifulSoup
 from tqdm import tqdm
@@ -140,11 +141,30 @@ def stamp_to_string(stamp, string_format="%Y-%m-%d %H:%M"):
     return time.strftime(string_format, time.localtime(stamp))
 
 
+def get_week_day(string, string_format="%Y-%m-%d"):
+    return datetime.datetime.fromtimestamp(time.mktime(time.strptime(string, string_format))).isoweekday()
+
+
+def get_week_day_name(string, string_format="%Y-%m-%d"):
+    day = get_week_day(string, string_format="%Y-%m-%d")
+    day_name_dic = {
+        1: "Mon",
+        2: "Tue",
+        3: "Wed",
+        4: "Thu",
+        5: "Fri",
+        6: "Sat",
+        7: "Sun"
+    }
+    return day_name_dic[day]
+
+
 def daily_job():
     time_stamp = time.time()
     today_date = stamp_to_string(time_stamp, "%Y-%m-%d")
 
     df_date = []
+    df_day = []
     df_match = []
     df_match_reason_lunch = []
     df_match_reason_dinner = []
@@ -158,6 +178,7 @@ def daily_job():
         if menu_dic["word_count"] <= 10:
             break
         df_date = df_date + [new_date]
+        df_day = df_day + [get_week_day_name(new_date)]
         df_match = df_match + (["Yes"] if match_flag else ["No"])
         new_lunch = match_reason[0]
         new_lunch = [mt.translate(item) for item in new_lunch]
@@ -172,6 +193,7 @@ def daily_job():
     # print(df_match_reason_dinner)
     df = pd.DataFrame()
     df["Date"] = df_date
+    df["Day"] = df_day
     df["Match"] = df_match
     df["Lunch"] = df_match_reason_lunch
     df["Dinner"] = df_match_reason_dinner
@@ -207,7 +229,7 @@ def daily_job():
     df_today_dinner.index += 1
 
     mail = Mail()
-    to_receivers = ["xue20@wfu.edu", "zhanj318@wfu.edu"]  # ["zhanj318@wfu.edu"]
+    to_receivers = ["xue20@wfu.edu"]#, "zhanj318@wfu.edu"]  # ["zhanj318@wfu.edu"]
     mail.set_receivers(to_receivers, [], [])
     content_html = STRING_MAIL_TEXT_HEAD + STRING_MAIL_TEXT_TITLE.format(today_date)
     content_html += STRING_MAIL_TEXT_PART_NONE_BLUE.format(
@@ -244,5 +266,6 @@ if __name__ == "__main__":
     # print(res)
     # menu = get_menu("2022-09-16")
     # print(json.dumps(menu, indent=4, ensure_ascii=False))
-    daily_job()
+    print(get_week_day_name("2022-10-08"))
+    # daily_job()
     pass
