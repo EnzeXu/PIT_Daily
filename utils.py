@@ -36,7 +36,11 @@ def http_get(date="2022-09-16"):
 
 
 def translate_one_dish(string):
-    return "{} ({})".format(string, baidu_translate(string)[0]["dst"])
+    if "dst" in baidu_translate(string)[0]:
+        res = baidu_translate(string)[0]["dst"]
+    else:
+        res = "FAILED TO TRANSLATE"
+    return "{} ({})".format(string, res)
 
 
 class MyTranslate:
