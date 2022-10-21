@@ -51,7 +51,7 @@ def baidu_translate(sentence):
     payload = {'appid': app_id, 'q': sentence, 'from': from_lang, 'to': to_lang, 'salt': salt, 'sign': sign}
     r = requests.post(url, params=payload, headers=headers)
     result = r.json()
-    return list(result["trans_result"]) if "trans_result" in result else []
+    return list(result["trans_result"])
 
 
 if __name__ == "__main__":
