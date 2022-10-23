@@ -39,7 +39,7 @@ def translate_one_dish(string):
     baidu_return = baidu_translate(string)
     if len(baidu_return) == 0:
         res = "FAILED TO TRANSLATE"
-    elif "dst" in baidu_translate(string)[0]:
+    elif "dst" in baidu_return[0]:
         res = baidu_return[0]["dst"]
     else:
         res = "FAILED TO TRANSLATE"
