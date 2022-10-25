@@ -236,8 +236,10 @@ def daily_job():
     df_today_dinner.index += 1
 
     mail = Mail()
-    to_receivers = ["xue20@wfu.edu", "zhanj318@wfu.edu"]  # ["zhanj318@wfu.edu"]
-    mail.set_receivers(to_receivers, [], [])
+    to_receivers = ["xue20@wfu.edu"]  # ["zhanj318@wfu.edu"]
+
+    cc_receivers = ["zhanj318@wfu.edu", "jiaolin12@wfu.edu"]  # ["zhanj318@wfu.edu"]
+    mail.set_receivers(to_receivers, cc_receivers, [])
     content_html = STRING_MAIL_TEXT_HEAD + STRING_MAIL_TEXT_TITLE.format(today_date)
     content_html += STRING_MAIL_TEXT_PART_NONE_BLUE.format(
         "Calendar",
