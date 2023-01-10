@@ -3,6 +3,6 @@ notice_hours = [19
                 # 12,
                 # 18
                 ]
-notice_minutes = [00]
+notice_minutes = [20]
 
 
