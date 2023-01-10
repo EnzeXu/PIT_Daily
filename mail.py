@@ -12,7 +12,7 @@ from email.mime.multipart import MIMEMultipart
 class Mail:
     def __init__(self):
         self.mail_host = "smtp.gmail.com"
-        self.mail_pass = "fmrkcrrcserxvyyb"  # "9uNdzPUsfn3bGdMC"
+        self.mail_pass = "myffitftpcyreeas"  # "9uNdzPUsfn3bGdMC"
         self.sender = "xue20@wfu.edu"  # "xuenze@fusionfintrade.com"
         self.to_receivers = []
         self.cc_receivers = []
