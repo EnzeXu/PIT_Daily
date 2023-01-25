@@ -237,7 +237,7 @@ def daily_job():
 
     mail = Mail()
     to_receivers = ["xue20@wfu.edu"]  # ["zhanj318@wfu.edu"]
-    bcc_receivers = ["zhanj318@wfu.edu", "jiaol20@wfu.edu", "xuz218@wfu.edu"]
+    bcc_receivers = ["zhanj318@wfu.edu", "jiaol20@wfu.edu", "xuz218@wfu.edu", "zhuy319@wfu.edu"]
     mail.set_receivers(to_receivers, [], bcc_receivers)
     content_html = STRING_MAIL_TEXT_HEAD + STRING_MAIL_TEXT_TITLE.format(today_date)
     content_html += STRING_MAIL_TEXT_PART_NONE_BLUE.format(
