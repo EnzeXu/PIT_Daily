@@ -260,7 +260,7 @@ def daily_job():
     )
 
     content_html += STRING_MAIL_TEXT_TAIL
-    print(content_html)
+    # print(content_html)
     mail.send(content_html, [], "PIT Daily [{}] - Today [{}]".format(today_date, df_match[0]), "html")
     print(now_time_string(), "[ ok ] Finished")
 
