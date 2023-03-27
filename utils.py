@@ -13,6 +13,7 @@ from baidu_api import baidu_translate
 from mail import Mail
 from strings import *
 from const import *
+from pretty_html_table import build_table
 
 
 def now_time_string(string_format="%Y-%m-%d %H:%M:%S"):
@@ -242,7 +243,7 @@ def daily_job():
     content_html = STRING_MAIL_TEXT_HEAD + STRING_MAIL_TEXT_TITLE.format(today_date)
     content_html += STRING_MAIL_TEXT_PART_NONE_BLUE.format(
         "Calendar",
-        df.to_html().replace(" style=\"text-align: right;\"", "")
+        build_table(df, 'blue_light')  #df.to_html().replace(" style=\"text-align: right;\"", "")
     ).replace("[br]", "<br>")
     content_html += STRING_MAIL_TEXT_README.format(
         "Keywords: {}".format(str(CONCERNED_DISH_KEYWORD_LIST)),
@@ -251,15 +252,15 @@ def daily_job():
     )
     content_html += STRING_MAIL_TEXT_PART_NONE_RED.format(
         "Today Menu - Lunch",
-        df_today_lunch.to_html().replace(" style=\"text-align: right;\"", "")
+        build_table(df_today_lunch, 'red_light')  # df_today_lunch.to_html().replace(" style=\"text-align: right;\"", "")
     )
     content_html += STRING_MAIL_TEXT_PART_NONE_RED.format(
         "Today Menu - Dinner",
-        df_today_dinner.to_html().replace(" style=\"text-align: right;\"", "")
+        build_table(df_today_dinner, 'red_light')  # df_today_dinner.to_html().replace(" style=\"text-align: right;\"", "")
     )
 
     content_html += STRING_MAIL_TEXT_TAIL
-    # print(content_html)
+    print(content_html)
     mail.send(content_html, [], "PIT Daily [{}] - Today [{}]".format(today_date, df_match[0]), "html")
     print(now_time_string(), "[ ok ] Finished")
 
@@ -274,6 +275,6 @@ if __name__ == "__main__":
     # print(res)
     # menu = get_menu("2022-09-16")
     # print(json.dumps(menu, indent=4, ensure_ascii=False))
-    print(get_week_day_name("2022-10-08"))
-    # daily_job()
+    # print(get_week_day_name("2022-10-08"))
+    daily_job()
     pass
